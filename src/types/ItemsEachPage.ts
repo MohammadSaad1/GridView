@@ -1,0 +1,1 @@
+export type ItemsEachPage = 3 | 4 | 5

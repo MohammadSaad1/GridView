@@ -1,4 +1,6 @@
-export const data = [
+import { ImageItem } from "../types/ImageItem";
+
+export const imageItems: ImageItem[] = [
   {
     title: 'Level up',
     description: 'Level up',
