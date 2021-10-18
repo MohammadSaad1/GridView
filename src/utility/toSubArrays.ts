@@ -1,5 +1,5 @@
-export const toSubArrays = (array: any[], amount: number): any[][] => (
-    array.reduce((accumulator, __, index) => {
+export const toSubArrays = <T>(array: T[], amount: number): T[][] => (
+    array.reduce((accumulator: any[], __, index) => {
         if (!accumulator[index % amount]) {
             accumulator[index % amount] = []
         }
