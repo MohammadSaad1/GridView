@@ -14,7 +14,7 @@ const FrontPage = (props: FrontPageProps) => {
     const [page, setPage] = useState<number>(0)
     const [search, setSearch] = useState<string>('')
     const [itemsEachPage, setItemsEachPage] = useState<ItemsEachPage>(3)
-
+console.log(itemsEachPage)
     const filterOnSearch = (imageItems: ImageItem[]) => {
         if (search) {
             return imageItems.filter(imageItem => imageItem.title.toLowerCase().includes(search.toLowerCase()))
@@ -24,13 +24,13 @@ const FrontPage = (props: FrontPageProps) => {
     }
 
     const dividedImageItemsPerPage = toSubArrays(filterOnSearch(imageItems), Math.ceil(imageItems.length / itemsEachPage))
-    const currentPageImageItems = dividedImageItemsPerPage[page]
+    const currentPageImageItems = dividedImageItemsPerPage[page] ?? []
 
     return (
-        <Box width='100%'>
+        <Box maxWidth={1000}>
             <Grid container={true} direction='column' alignContent='center'>
                 <Grid item={true}>
-                    <Toolbar setSearch={setSearch} />
+                    <Toolbar setSearch={setSearch} itemsEachPage={itemsEachPage} setItemsEachPage={setItemsEachPage} />
                 </Grid>
                 <Grid item={true}>
                     <GridView

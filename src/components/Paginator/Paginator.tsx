@@ -11,8 +11,8 @@ interface PaginatiorProps {
 const Paginator = (props: PaginatiorProps) => {
     const { page, setPage, totalPages } = props
 
-    const handleNext = () => props.setPage(page + 1)
-    const handlePrevious = () => props.setPage(page - 1)
+    const handleNext = () => setPage(page + 1)
+    const handlePrevious = () => setPage(page - 1)
 
     return (
         <Box style={{ backgroundColor: 'black', borderRadius: '15px' }} color='white' width='100%'>
