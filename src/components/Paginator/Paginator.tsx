@@ -1,6 +1,7 @@
 import { Box, Grid, IconButton, Typography } from "@material-ui/core"
 import { KeyboardArrowLeft, KeyboardArrowRight } from "@material-ui/icons"
 import { Dispatch, SetStateAction } from "react"
+import './Paginator.scss'
 
 interface PaginatiorProps {
     setPage: Dispatch<SetStateAction<number>>
@@ -15,7 +16,7 @@ const Paginator = (props: PaginatiorProps) => {
     const handlePrevious = () => setPage(page - 1)
 
     return (
-        <Box style={{ backgroundColor: 'black', borderRadius: '15px' }} color='white' width='100%'>
+        <Box className='paginator'>
             <Grid container={true} direction='row' alignItems='center'>
                 <Grid item={true} xs={4}>
                     <IconButton color='inherit' onClick={handlePrevious} disabled={page === 0}>

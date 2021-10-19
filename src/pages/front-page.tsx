@@ -3,10 +3,10 @@ import { useState } from "react"
 import GridView from "../components/GridView/GridView"
 import Toolbar from "../components/Toolbar/Toolbar"
 import Paginator from "../components/Paginator/Paginator"
-import { imageItems } from "../data/imageItems"
-import { ItemsEachPage } from "../types/ItemsEachPage"
-import { toSubArrays } from "../utility/toSubArrays"
-import { ImageItem } from "../types/ImageItem"
+import { imageItems } from "../infrastructure/data/imageItems"
+import { ItemsEachPage } from "../infrastructure/types/ItemsEachPage"
+import { toSizePerPage } from "../infrastructure/utility/toSizePerPage"
+import { ImageItem } from "../infrastructure/types/ImageItem"
 
 interface FrontPageProps { }
 
@@ -14,7 +14,7 @@ const FrontPage = (props: FrontPageProps) => {
     const [page, setPage] = useState<number>(0)
     const [search, setSearch] = useState<string>('')
     const [itemsEachPage, setItemsEachPage] = useState<ItemsEachPage>(3)
-console.log(itemsEachPage)
+
     const filterOnSearch = (imageItems: ImageItem[]) => {
         if (search) {
             return imageItems.filter(imageItem => imageItem.title.toLowerCase().includes(search.toLowerCase()))
@@ -23,18 +23,18 @@ console.log(itemsEachPage)
         return imageItems
     }
 
-    const dividedImageItemsPerPage = toSubArrays(filterOnSearch(imageItems), Math.ceil(imageItems.length / itemsEachPage))
+    const dividedImageItemsPerPage = toSizePerPage(filterOnSearch(imageItems), itemsEachPage)
+    console.log(dividedImageItemsPerPage)
     const currentPageImageItems = dividedImageItemsPerPage[page] ?? []
 
     return (
-        <Box maxWidth={1000}>
-            <Grid container={true} direction='column' alignContent='center'>
+        <Grid container={true} justifyContent='center'>
+            <Grid item={true} container={true} xs={12} sm={10} md={8} direction='column'>
                 <Grid item={true}>
                     <Toolbar setSearch={setSearch} itemsEachPage={itemsEachPage} setItemsEachPage={setItemsEachPage} />
                 </Grid>
                 <Grid item={true}>
                     <GridView
-                        itemsEachPage={itemsEachPage}
                         imageItems={currentPageImageItems}
                     />
                 </Grid>
@@ -42,7 +42,7 @@ console.log(itemsEachPage)
                     <Paginator page={page} setPage={setPage} totalPages={dividedImageItemsPerPage.length} />
                 </Grid>
             </Grid>
-        </Box>
+        </Grid>
     )
 }
 

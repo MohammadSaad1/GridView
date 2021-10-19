@@ -1,16 +1,14 @@
 import { Grid, Box, Typography } from "@material-ui/core"
-import { ImageItem } from "../../types/ImageItem"
-import { ItemsEachPage } from "../../types/ItemsEachPage"
-import { isArrayEmpty } from "../../utility/isArrayEmpty"
+import { ImageItem } from "../../infrastructure/types/ImageItem"
+import { isArrayEmpty } from "../../infrastructure/utility/isArrayEmpty"
 import GridItem from "../GridItem/GridItem"
 
 interface GridViewProps {
-    itemsEachPage: ItemsEachPage,
     imageItems: ImageItem[]
 }
 
 const GridView = (props: GridViewProps) => {
-    const { imageItems, itemsEachPage } = props
+    const { imageItems } = props
 
     return (
         <Box padding={5}>

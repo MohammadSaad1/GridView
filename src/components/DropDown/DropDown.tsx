@@ -1,6 +1,6 @@
 import { Grid, MenuItem, Select } from "@material-ui/core"
 import { ChangeEvent, Dispatch, ReactNode } from "react"
-import { ItemsEachPage } from "../../types/ItemsEachPage"
+import { ItemsEachPage } from "../../infrastructure/types/ItemsEachPage"
 
 interface DropDownProps {
     itemsEachPage: ItemsEachPage
