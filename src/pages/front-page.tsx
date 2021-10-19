@@ -24,7 +24,6 @@ const FrontPage = (props: FrontPageProps) => {
     }
 
     const dividedImageItemsPerPage = toSizePerPage(filterOnSearch(imageItems), itemsEachPage)
-    console.log(dividedImageItemsPerPage)
     const currentPageImageItems = dividedImageItemsPerPage[page] ?? []
 
     return (
